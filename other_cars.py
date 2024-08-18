@@ -5,7 +5,7 @@ seed(10)
 class Opponent:
     def __init__(self, screen_width: int, screen_height: int)-> None:
         self.__start_x_lst = [169,285,410,535]
-       
+        self.__test = 0
         self.car_lst: list = []
         self.car_rect_lst: list = []
         for i in range(1, 12):

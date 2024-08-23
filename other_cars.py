@@ -8,6 +8,12 @@ class Opponent:
         self.__start_x_lst = [169,285,410,535]
         self.car_lst: list = []
         self.car_rect_lst: list = []
+        self.__stripe1 = 0
+        self.__stripe2 = 0
+        self.__stripe3 = 0
+        self.__stripe4 = 0
+        self.global_car = 0
+        self.__speed = 2
         for i in range(1, 12):
             self.car_image = pygame.transform.smoothscale(
             pygame.image.load(f"images/car{i}.png").convert_alpha(),
@@ -15,30 +21,43 @@ class Opponent:
             )
             self.car_rect = self.car_image.get_rect()
             self.car_rect.x = choice(self.__start_x_lst)
-            self.car_rect.y = -200
-            if len(self.car_rect_lst)>1:
-                for car_lower in self.car_rect_lst:
-                    if self.car_rect.colliderect(car_lower):
-                        while self.car_rect.colliderect(car_lower):
-                            self.car_rect.x = choice(self.__start_x_lst)
-                    if self.car_rect.y <= car_lower.y:
-                        if (self.car_rect.y * (-1)) - (car_lower.y * (-1)) < 380:
-                            while (self.car_rect.y * (-1)) - (car_lower.y * (-1)) < 380:
-                                self.car_rect.y -= 1
-                    if self.car_rect.y >= car_lower.y:
-                        if (car_lower.y * (-1)) - (self.car_rect.y * (-1)) < 380:
-                            while (car_lower.y * (-1)) - (self.car_rect.y * (-1)) < 380:
-                                car_lower.y -= 1
+            self.car_rect.y = randrange(-3000, -100, 155)
+        
             self.car_lst.append(self.car_image)
             self.car_rect_lst.append(self.car_rect)
+        
+    """def __check_spawn(self) -> None:
+        for car1, car2 in zip(self.car_rect_lst, self.car_rect_lst):
+            if car1.colliderect(car2):
+                car2.x += 20
+    """
+    def draw(self, screen) -> None:
+        
+        for car, rect in zip(self.car_lst, self.car_rect_lst):
+            screen.blit(car, rect)
+        """
+        screen.blit(self.__car1, self.__car1_rect)
+        screen.blit(self.__car2, self.__car2_rect)
+        screen.blit(self.__car3, self.__car3_rect)
+        screen.blit(self.__car4, self.__car4_rect)
+        screen.blit(self.__car5, self.__car5_rect)
+        
+        """
+        
+    
+    def move(self) -> None:
+        for car in self.car_rect_lst:
+            car.y += 3
+        
     def check_logic(self) -> None:
         for car_rect in self.car_rect_lst:
             if car_rect.y > 1000:
-                car_rect.y -= 3200
+                car_rect.y = randrange(-2000, -100, 200)
                 car_rect.x = choice(self.__start_x_lst)
-    def draw(self, screen) -> None:
-        for car, rect in zip(self.car_lst, self.car_rect_lst):
-            screen.blit(car, rect)
-    def move(self) -> None:
-        for car in self.car_rect_lst:
-                car.y += 5
+        
+            
+            
+    #позиция курсора
+    """def __move(self):
+        self.__x, self.__y = pygame.mouse.get_pos()
+        print(self.__x, self.__y)"""

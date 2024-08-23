@@ -8,24 +8,16 @@ class Old_Game:
     def __init__(self, screen_width: int = 800,
                  screen_height: int = 1000,
                  FPS: int = 60)-> None:
-        
         pygame.init()
-        
-        #ширина
         self.__screen_width: int = screen_width
-        #высота
         self.__screen_height: int = screen_height
-        #вывод окна
         self.__screen: pygame.Surface = pygame.display.set_mode(
             (self.__screen_width, self.__screen_height)
         )
-        #картинка
         self.__bg_screen: str = pygame.transform.smoothscale(pygame.image.load("images/track.png").convert(),(self.__screen_width, self.__screen_height))
         self.__bg_y = 0
-        #FPS
         self.__FPS: int = FPS
         self.__clock: pygame.time.Clock = pygame.time.Clock()
-        #кнопка паузы
         self.__pause: str = pygame.transform.smoothscale(
             pygame.image.load("images/pause-button.png").convert_alpha(),
             (80,80)
@@ -34,23 +26,14 @@ class Old_Game:
         self.__pause_rect.x = self.__screen_width - 85
         self.__pause_rect.y = 5
         self.__game_end: bool = False
-        
-        
-        
-        #Игровые объекты 
         self.__opponent = Opponent(self.__screen_width, self.__screen_height)
         self.__car = Player_Car(self.__screen_width, self.__screen_height)
-        
-        #Счетчик
         self.__score: int = 0
         with open("data/max_score_tc.txt", "r") as file:
             self.max_score = int(file.read().strip())
-        
-        
         self.__score_txt = str(int(self.__score))
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 55)
         self.__text_color = (255, 0, 0)
-        
         self.__score_button = self.__font_comicsans.render(f"{self.__score_txt}", True, self.__text_color)
         self.__score_button_rect = self.__score_button.get_rect()
         self.__score_button_rect.x = 30
@@ -65,16 +48,9 @@ class Old_Game:
             self.__clock.tick(self.__FPS)
             self.__move_objects()
             self.__check_collision()
-            
-            self.__check_collision()
-            
-            self.__bg_y += 5
+            self.__bg_y += 8
             if self.__bg_y == 1000:
                 self.__bg_y = 0
-    
-    
-        
-        
     def __check_events(self) -> None:
         event: pygame.event.Event
         for event in pygame.event.get():
@@ -84,12 +60,6 @@ class Old_Game:
                 self.__car.movement[event.key] = True
             elif event.type == pygame.KEYUP and event.key in self.__car.movement:
                 self.__car.movement[event.key] = False
-                
-            elif event.type == pygame.KEYDOWN and event.key in self.__opponent.movement:
-                self.__opponent.movement[event.key] = True
-            elif event.type == pygame.KEYUP and event.key in self.__opponent.movement:
-                self.__opponent.movement[event.key] = False
-                
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if self.__pause_rect.collidepoint(*pygame.mouse.get_pos()):
@@ -101,8 +71,6 @@ class Old_Game:
         self.__opponent.move()
         self.__opponent.check_logic()
         self.__print_score()
-        
-        
     def __check_collision(self) -> None:
         for car in self.__opponent.car_rect_lst:
             if self.__car.car_rect.colliderect(car):
@@ -126,11 +94,6 @@ class Old_Game:
         self.__screen.blit(self.__pause, self.__pause_rect)
         self.__car.draw(self.__screen)
         self.__opponent.draw(self.__screen)
-        
         self.__screen.blit(self.__score_button, (self.__score_button_rect.x, self.__score_button_rect.y))
-
-        
-    
-        
         pygame.display.flip()
         

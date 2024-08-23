@@ -45,11 +45,10 @@ class GM_window:
             if event.type == pygame.QUIT:
                 self.__game_end = True
             elif event.type == pygame.KEYDOWN:
-                """if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_SPACE:
                     menu = Old_Game()
-                    menu.run()"""
-                if event.key == pygame.K_ESCAPE:
-                    self.__game_end = True
+                    menu.run()
+                
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if self.__main_menu.collidepoint(*pygame.mouse.get_pos()):

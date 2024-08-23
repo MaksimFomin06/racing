@@ -60,12 +60,6 @@ class Old_Game:
                 self.__car.movement[event.key] = True
             elif event.type == pygame.KEYUP and event.key in self.__car.movement:
                 self.__car.movement[event.key] = False
-                
-            elif event.type == pygame.KEYDOWN and event.key in self.__opponent.movement:
-                self.__opponent.movement[event.key] = True
-            elif event.type == pygame.KEYUP and event.key in self.__opponent.movement:
-                self.__opponent.movement[event.key] = False
-                
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     if self.__pause_rect.collidepoint(*pygame.mouse.get_pos()):

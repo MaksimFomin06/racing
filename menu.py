@@ -4,17 +4,16 @@ from old_racing import Old_Game
 class Menu:
     def __init__(self, screen_width: int = 800, screen_height: int = 1000, FPS: int = 60) -> None:
         pygame.init()
-        self.__width: int = screen_width
-        self.__height: int = screen_height
-        self.__screen: pygame.Surface = pygame.display.set_mode((self.__width, 
-                                                                 self.__height))
-        self.__bg_screen: str = pygame.transform.smoothscale(
-            pygame.image.load("images/background1.jpg").convert_alpha(),(self.__width, self.__height))
-        self.__FPS: int = FPS
-        self.__clock: pygame.time.Clock = pygame.time.Clock()
-        
-        self.__game_end: bool = False
-        
+        self.__width, self.__height = screen_width, screen_height
+        self.__screen = pygame.display.set_mode((self.__width, self.__height))
+        self.__bg_screen = pygame.transform.smoothscale(
+            pygame.image.load("images/background1.jpg").convert_alpha(),
+            (self.__width, self.__height)
+        )
+        self.__FPS = FPS
+        self.__clock = pygame.time.Clock()
+        self.__game_end = False
+        self.__text_color = (0, 0, 0)
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 100)
         self.__start = self.__font_comicsans.render("СТАРТ", True, self.__text_color)
         self.__start_rect = self.__start.get_rect(topleft=(250, 170))

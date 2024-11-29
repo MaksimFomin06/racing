@@ -14,12 +14,12 @@ class Old_Game:
         self.__screen: pygame.Surface = pygame.display.set_mode(
             (self.__screen_width, self.__screen_height)
         )
-        self.__bg_screen: str = pygame.transform.smoothscale(pygame.image.load("images/track.png").convert(),(self.__screen_width, self.__screen_height))
+        self.__bg_screen: str = pygame.transform.smoothscale(pygame.image.load("racing/images/track.png").convert(),(self.__screen_width, self.__screen_height))
         self.__bg_y = 0
         self.__FPS: int = FPS
         self.__clock: pygame.time.Clock = pygame.time.Clock()
         self.__pause: str = pygame.transform.smoothscale(
-            pygame.image.load("images/pause-button.png").convert_alpha(),
+            pygame.image.load("racing/images/pause-button.png").convert_alpha(),
             (80,80)
         )
         self.__pause_rect: pygame.Rect = self.__pause.get_rect()
@@ -29,7 +29,7 @@ class Old_Game:
         self.__opponent = Opponent(self.__screen_width, self.__screen_height)
         self.__car = Player_Car(self.__screen_width, self.__screen_height)
         self.__score: int = 0
-        with open("data/max_score_tc.txt", "r") as file:
+        with open("racing/data/max_score_tc.txt", "r") as file:
             self.max_score = int(file.read().strip())
         self.__score_txt = str(int(self.__score))
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 55)
@@ -85,7 +85,7 @@ class Old_Game:
     def __max_score_counter(self) -> None:
         self.__score += 0.01
         if self.max_score < self.__score:
-            self.test_txt = open("data/max_score_tc.txt", "w")
+            self.test_txt = open("racing/data/max_score_tc.txt", "w")
             self.test_txt.write(str(int(self.__score)))
             self.test_txt.close()
     def __draw(self) -> None:

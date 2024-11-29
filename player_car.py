@@ -2,7 +2,7 @@ import pygame
 from other_cars import Opponent
 class Player_Car:
     def __init__(self, screen_width: int, screen_height: int)-> None:
-        self.__image_path: str = pygame.transform.smoothscale(pygame.image.load("images/car12.png").convert_alpha(),(95,135))
+        self.__image_path: str = pygame.transform.smoothscale(pygame.image.load("racing/images/car12.png").convert_alpha(),(95,135))
         self.car_rect: pygame.Rect = self.__image_path.get_rect()
         self.car_rect.x = 160
         self.car_rect.y = screen_height - 190

@@ -7,7 +7,7 @@ class Menu:
         self.__width, self.__height = screen_width, screen_height
         self.__screen = pygame.display.set_mode((self.__width, self.__height))
         self.__bg_screen = pygame.transform.smoothscale(
-            pygame.image.load("images/background1.jpg").convert_alpha(),
+            pygame.image.load("racing/images/background1.jpg").convert_alpha(),
             (self.__width, self.__height)
         )
         self.__FPS = FPS
@@ -22,7 +22,7 @@ class Menu:
         self.__exit_text = self.__font_comicsans_exit.render("ВЫЙТИ ИЗ ИГРЫ", True, self.__text_color)
         self.__exit_button = self.__exit_text.get_rect(topleft=(100, 370))
         self.__font_comicsans_ms = pygame.font.SysFont("comicsansms", 20)
-        with open("data/max_score_tc.txt", "r") as file:
+        with open("racing/data/max_score_tc.txt", "r") as file:
             self.__mscore_txt = file.read().strip()
         self.__max_score_text = self.__font_comicsans_ms.render(f"Лучший счет {self.__mscore_txt}", True, (255, 255, 255))
         self.__max_score_rect = self.__max_score_text.get_rect(topleft=(40, 40))

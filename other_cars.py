@@ -10,7 +10,7 @@ class Opponent:
         self.car_rect_lst: list = []
         for i in range(1, 12):
             self.car_image = pygame.transform.smoothscale(
-            pygame.image.load(f"images/car{i}.png").convert_alpha(),
+            pygame.image.load(f"racing/images/car{i}.png").convert_alpha(),
             (100, 155)
             )
             self.car_rect = self.car_image.get_rect()

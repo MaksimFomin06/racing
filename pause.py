@@ -1,10 +1,12 @@
+"""Модуль отвечающий за окно паузы."""
+
 import pygame
-import pygame, ctypes
 
 
 class Pause:
-    """Класс отвечающий за отображение окна паузы"""
-    def __init__(self, 
+    """Класс отвечающий за отображение окна паузы."""
+
+    def __init__(self,
                  screen_width: int = 800,
                  screen_height: int = 1000,
                  fps: int = 60):
@@ -14,11 +16,11 @@ class Pause:
         self.__screen: pygame.Surface = pygame.display.set_mode((self.__width,
                                                                  self.__height))
         self.__bg_screen: str = pygame.transform.smoothscale(
-            pygame.image.load("racing/images/background1.jpg").convert_alpha(), 
-                                                 (self.__width, self.__height))
+            pygame.image.load("racing/images/background1.jpg").convert_alpha(),
+            (self.__width, self.__height))
         self.__fps: int = fps
         self.__clock: pygame.time.Clock = pygame.time.Clock()
-        self.__game_end: bool = False        
+        self.__game_end: bool = False
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 55)
         self.__text_color = (0, 0, 0)
         self.__continue = self.__font_comicsans.render("ПРОДОЛЖИТЬ", True, self.__text_color)
@@ -31,12 +33,14 @@ class Pause:
         self.__exit_in_menu_rect = self.__exit_in_menu.get_rect()
         self.__exit_in_menu_rect.x = 165
         self.__exit_in_menu_rect.y = 370
+
     def run(self):
         while not self.__game_end:
             self.__check_events()
             self.__draw()
             self.__clock.tick(self.__fps)
-    def __check_events(self)-> None:
+
+    def __check_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__game_end = True
@@ -48,7 +52,8 @@ class Pause:
                         menu.run()
                     elif self.__continue_rect.collidepoint(*pygame.mouse.get_pos()):
                         self.__game_end = True
-    def __draw(self)-> None:
+
+    def __draw(self) -> None:
         self.__screen.blit(self.__bg_screen, (0, 0))
         self.__screen.blit(self.__exit_in_menu, self.__exit_in_menu_rect)
         self.__screen.blit(self.__continue, self.__continue_rect)

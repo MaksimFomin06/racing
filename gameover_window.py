@@ -10,7 +10,7 @@ class GM_window:
         self.__screen: pygame.Surface = pygame.display.set_mode((self.__width,
                                                                  self.__height))
         self.__bg_screen: str = pygame.transform.smoothscale(
-            pygame.image.load("images/background1.jpg").convert_alpha(),(self.__width, self.__height))
+            pygame.image.load("racing/images/background1.jpg").convert_alpha(),(self.__width, self.__height))
         self.__FPS: int = FPS
         self.__clock: pygame.time.Clock = pygame.time.Clock()
         

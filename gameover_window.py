@@ -1,6 +1,8 @@
 import pygame
 
+
 class GM_window:
+    """Класс отвечающий за отображение окна окончания игры."""
     def __init__(self, screen_width: int = 800,
                  screen_height: int = 1000,
                  FPS: int = 60) -> None:
@@ -15,7 +17,7 @@ class GM_window:
         self.__clock: pygame.time.Clock = pygame.time.Clock()
         
         self.__game_end: bool = False
-        #ГЛАВНОЕ МЕНЮ
+        #Кнопка "Главное меню"
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 55)
         self.__text_color = (0, 0, 0)
         
@@ -23,7 +25,7 @@ class GM_window:
         self.__main_menu = self.__main_m.get_rect()
         self.__main_menu.x = 190
         self.__main_menu.y = 185    
-        #ЗАНОВО
+        #Кнопка "Заново"
         self.__font_comicsans = pygame.font.SysFont("comicsansms", 55)
         self.__text_color = (0, 0, 0)
         

@@ -5,6 +5,7 @@ from other_cars import Opponent
 from pause import Pause
 
 class Old_Game:
+    """Класс отвечающий за отображение игры"""
     def __init__(self, screen_width: int = 800,
                  screen_height: int = 1000,
                  FPS: int = 60)-> None:

@@ -2,6 +2,7 @@ import pygame
 from old_racing import Old_Game
 
 class Menu:
+    """Класс отвечающий за отображение меню игры"""
     def __init__(self, screen_width: int = 800, screen_height: int = 1000, FPS: int = 60) -> None:
         pygame.init()
         self.__width, self.__height = screen_width, screen_height

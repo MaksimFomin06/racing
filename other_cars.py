@@ -4,6 +4,7 @@ import pygame
 
 
 class Opponent:
+    """Класс отвечающий за рисование машинок-оппонентов"""
     def __init__(self, screen_width: int, screen_height: int)-> None:
         self.__start_x_lst = [169,285,410,535]
         self.car_lst: list = []

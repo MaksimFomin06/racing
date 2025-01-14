@@ -3,6 +3,7 @@ import pygame, ctypes
 
 
 class Pause:
+    """Класс отвечающий за отображение окна паузы"""
     def __init__(self, 
                  screen_width: int = 800,
                  screen_height: int = 1000,

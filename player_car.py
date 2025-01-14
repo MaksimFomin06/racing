@@ -1,6 +1,7 @@
 import pygame
 from other_cars import Opponent
 class Player_Car:
+    """Класс отвечающий за отображение машинки игрока"""
     def __init__(self, screen_width: int, screen_height: int)-> None:
         self.__image_path: str = pygame.transform.smoothscale(pygame.image.load("racing/images/car12.png").convert_alpha(),(95,135))
         self.car_rect: pygame.Rect = self.__image_path.get_rect()

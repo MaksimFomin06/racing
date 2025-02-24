@@ -1,10 +1,44 @@
 """Модуль отвечающий за машину игрока."""
 
 import pygame
+import abc
 
 
+class BasePlayerCar(abc.ABC):
+    @abc.abstractmethod
+    def __init__(self) -> None:
+        """Инициализация параметров машины."""
+        self.__image_path: str
+        self.car_rect: pygame.Rect
+        self.__speed: int
+        self.movement: dict[int, bool]
+        self.__diagonal_movement_coefficient: float
+
+    @abc.abstractmethod
+    def move(self) -> None:
+        """
+        Движение машины.
+        """
+    
+    @abc.abstractmethod
+    def check_logic(self) -> None:
+        """
+        Обработка логики движения машины.
+        """
+    
+    @abc.abstractmethod
+    def draw(self, screen) -> None:
+        """
+        Отрисовка машины
+
+        :param screen: Экран игры
+        :type screen: pygame.Surface
+        """
+
+
+"""
 class PlayerCar:
-    """Класс отвечающий за отображение машинки игрока."""
+    "Класс отвечающий за отображение машинки игрока."
 
     def __init__(self, screen_width: int, screen_height: int) -> None:
         self.__image_path: str = pygame.transform.smoothscale(pygame.image.load("racing/images/car12.png").convert_alpha(), (95, 135))
@@ -29,3 +63,4 @@ class PlayerCar:
 
     def draw(self, screen) -> None:
         screen.blit(self.__image_path, self.car_rect)
+"""

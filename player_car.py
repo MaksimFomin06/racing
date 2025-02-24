@@ -6,7 +6,7 @@ import abc
 
 class BasePlayerCar(abc.ABC):
     @abc.abstractmethod
-    def __init__(self) -> None:
+    def __init__(self, screen_width, screen_height) -> None:
         """Инициализация параметров машины."""
         self.__image_path: str
         self.car_rect: pygame.Rect
@@ -35,19 +35,17 @@ class BasePlayerCar(abc.ABC):
         :type screen: pygame.Surface
         """
 
+class PlayerCar(BasePlayerCar):
+    """Реализация машины в игре."""
 
-"""
-class PlayerCar:
-    "Класс отвечающий за отображение машинки игрока."
-
-    def __init__(self, screen_width: int, screen_height: int) -> None:
-        self.__image_path: str = pygame.transform.smoothscale(pygame.image.load("racing/images/car12.png").convert_alpha(), (95, 135))
-        self.car_rect: pygame.Rect = self.__image_path.get_rect()
+    def __init__(self, screen_width, screen_height) -> None:
+        self.__image_path = pygame.transform.smoothscale(pygame.image.load("racing/images/car12.png").convert_alpha(), (95, 135))
+        self.car_rect = self.__image_path.get_rect()
         self.car_rect.x = 160
         self.car_rect.y = screen_height - 190
         self.__speed = 8
-        self.movement: dict[int, bool] = {pygame.K_a: False, pygame.K_d: False, pygame.K_s: False, pygame.K_w: False}
-        self.__diagonal_movement_coefficient: float = 1 / (2**0.5)
+        self.movement = {pygame.K_a: False, pygame.K_d: False, pygame.K_s: False, pygame.K_w: False}
+        self.__diagonal_movement_coefficient = 1 / (2 ** 0.5)
 
     def move(self) -> None:
         if self.movement[pygame.K_a] or self.movement[pygame.K_d]:
@@ -63,4 +61,3 @@ class PlayerCar:
 
     def draw(self, screen) -> None:
         screen.blit(self.__image_path, self.car_rect)
-"""
